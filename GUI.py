@@ -1,12 +1,10 @@
-from get_exchange import *
+from getExchange import getExchange
 from tkinter import *
 
 
-class GUI(get_exchange):
+class GUI(getExchange):
     def __init__(self , win):
         super().__init__()
-        super().getInfoFromBOT()
-        super().getInfoFromCoinmill()
 
         self.win = win
         
@@ -14,11 +12,12 @@ class GUI(get_exchange):
         
         self.win.resizable(0,0)
         
-        for i in self.exchange_dict:
-            exchange_message = '{} : {}'.format(i,self.exchange_dict[i])
+        for i in self.exchangeDict:
+            exchange_message = '{} : {}'.format(i,self.exchangeDict[i])
             Label(self.win , text = exchange_message).grid()
-        
-        Label(self.win , text = '\nInsert Curren$y abbreviation to convert to NTD (Ex : USD 10)').grid()
+            
+        Label(self.win , text = '\n(This exchange rate using \"Bank of Taiwan\" sight selling rate)').grid()
+        Label(self.win , text = 'Insert Curren$y abbreviation to convert to NTD (Ex : USD 10)').grid()
         
         self.entry = Entry(self.win)
         self.entry.grid()
@@ -60,6 +59,13 @@ class GUI(get_exchange):
         
         var.set(output_message)
 
+def main():
+    win = Tk()
+    a = GUI(win)
+    a.win.mainloop()
+
+if __name__ == '__main__':
+    main()
 
         
 
