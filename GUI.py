@@ -1,5 +1,12 @@
-from getExchange import getExchange
+import sys
 from tkinter import *
+
+
+if len(sys.argv) < 2:
+    from getTWBExchange import getTWBExchange as getExchange
+else:
+    if sys.argv[1] == '-visa':
+        from getVisaExchange import getVisaExchange as getExchange
 
 
 class GUI(getExchange):
@@ -16,7 +23,7 @@ class GUI(getExchange):
             exchange_message = '{} : {}'.format(i,self.exchangeDict[i])
             Label(self.win , text = exchange_message).grid()
             
-        Label(self.win , text = '\n(This exchange rate using \"Bank of Taiwan\" sight selling rate)').grid()
+        Label(self.win , text = '\n%s' % getExchange.getWarrngMessige()).grid()
         Label(self.win , text = 'Insert Curren$y abbreviation to convert to NTD (Ex : USD 10)').grid()
         
         self.entry = Entry(self.win)
